@@ -1,0 +1,74 @@
+\documentclass[oneside,ngerman]{scrartcl}
+\usepackage[paperheight=55mm,paperwidth=85mm,left=0mm,right=0mm, top=0mm, bottom=0mm]{geometry}
+\usepackage{graphicx}
+
+% pesky German Umlauts
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+
+% XeTeX allows using standard fonts on a Mac, e.g. Helvetica Neue
+\usepackage{fontspec}
+\setmainfont{Helvetica Neue}
+\newfontfamily{\maintext}{Helvetica Neue}
+% Font for the GPG Key Fingerprint
+\newfontfamily{\fixed}{Andale Mono}
+
+% ----------------------------------
+
+% The data we want to put on the card
+\newcommand{\name}{Dr. Max Muster}
+\newcommand{\education}{Diplom-Plagiarist}
+\newcommand{\street}{Kurze Straße 22}
+\newcommand{\town}{98765 Großestadt}
+\newcommand{\phone}{+49 98 76543210}
+\newcommand{\mobile}{+49 987 6543210}
+\newcommand{\mail}{max@muster.foo}
+\newcommand{\pgp}{PGP/GPG:}
+\newcommand{\pgpa}{AAAA BBBB CCCC DDDD EEEE}
+\newcommand{\pgpb}{FFFF 0000 1111 2222 3333}
+
+\begin{document}
+
+% Which unit do we want to use?
+\setlength{\unitlength}{1mm}
+
+% Create new picture environment of size 85 x 55 mm
+% Shift of 3,6mm to the left
+% Origin of coords system (0mm/0mm) is now lower left corner of card
+\begin{picture}(85,55)(3.6,0)
+
+% Draw frame almost as big as card for calibration of picture environment placement
+%\put(0.25,0.25){\line(0,1){54.5}}
+%\put(0.25,0.25){\line(1,0){84.5}}
+%\put(84.75,54.75){\line(0,-1){54.5}}
+%\put(84.75,54.75){\line(-1,0){84.5}}
+
+% Draw line on top
+\put(5,50){\line(1,0){75}}
+% 8mm space
+\put(32,42){\textbf{\name}}
+\put(32,39.5){\tiny \education}
+% 6mm space
+\put(32,33.5){\scriptsize \street}
+\put(32,30){\scriptsize \town}
+% 6mm space
+\put(32,24){\tiny Telefon:}
+\put(43,24){\tiny \phone}
+\put(32,21.5){\tiny Mobil:}
+\put(43,21.5){\tiny \mobile}
+\put(32,19){\tiny E-Mail:}
+\put(43,19){\tiny \mail}
+% 6mm space
+\put(32,13){\tiny \pgp}
+\put(43,13){\tiny \fixed{\pgpa}}
+\put(43,11){\tiny \fixed{\pgpb}}
+% 6mm space
+% Draw line on bottom
+\put(5,5){\line(1,0){75}}
+
+% Include QR Code, logo, picture, ...
+\put(7,25){\includegraphics[width=2cm,height=2cm]{qrcode.pdf}}
+
+\end{picture}
+
+\end{document}
